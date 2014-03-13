@@ -15,19 +15,11 @@ BookRouter.config(["$routeProvider",
       controller: "BooksCtrl"
     ).
     when("/books/:id",
-      templateUrl: "books/show",
-      controller: "BooksCtrl"
+      templateUrl: "books/view",
+      controller: "BookDetailsCtrl"
     )
 
 ])
-
-
-# moved to books_controllers
-# BookApp.controller("BooksCtrl",["$scope",
-#   ($scope)->
-#     $scope.message = "Hello World!"
-# ])
-
 
 
 

@@ -1,25 +1,28 @@
 
 BookAppCtrls = angular.module("BookAppCtrls",[]) 
-# BookAppCtrls is what names the module
 
-BookAppCtrls.controller("BooksCtrl",["$scope",
-"routeParams",
-  ($scope, $routeParams)->
-    $scope.message = "Hello World!"
-    $scope.bookId = $routeParams.id
-    $scope.fakeBooks = [
-        id: 1
-        title: "How to fake a book"
-        desc: "fake fake"
-      ,
-        id: 2
-        title: "Bog adventures"
-        desc: "good luck"
-        ]
-    console.log $scope.fakeBooks
+BookAppCtrls.controller("BooksCtrl", ["$scope", "$http",
+  ($scope, $http)->
+      $http.get("/books.json").
+        success((newBooks)->
+          console.log(newBooks)
+          $scope.fakeBooks = $scope.fakeBooks.concat(newBooks)
+      )
+      $scope.message = "Hello World!"
+      $scope.fakeBooks = [
+          id: 1
+          title: "How to fake a book"
+          desc: "fake fake"
+        ,
+          id: 2
+          title: "Bog adventures"
+          desc: "good luck"
+          ]
+
 ])
 
-BooksAppCtrls.controler("BooksDetailsCtrl", [
+BookAppCtrls.controller("BookDetailsCtrl",  ["$scope","$routeParams",($scope, $routeParams)->
+    $scope.bookId = $routeParams.id
 
 
 ])
